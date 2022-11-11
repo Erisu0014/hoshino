@@ -10,11 +10,12 @@ import random
 
 from .genshin_joke_text import joke
 from hoshino import Service
+from nonebot import CommandSession
 
 sv = Service('genshin_joke', visible=False)
 
 
 # basic function for debug, not included in Service('chat')
-@sv.on_keyword('我去 原',  'op','叩')
-async def genshin_joke(bot,ev):
-    await bot.send(ev, random.choice(joke))
+@sv.on_command('我去 原',   aliases=('op','叩','我去 o','我去 原！'))
+async def genshin_joke(ss: CommandSession):
+    await ss.finish(random.choice(joke))
